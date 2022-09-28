@@ -1,0 +1,29 @@
+{
+  "socialIcons": [
+    {
+      "title": "Fb",
+      "url": "https://twitter.com/Inroweb",
+      "icon": "facebook"
+    },
+    {
+      "url": "https://www.instagram.com/inroweb/",
+      "title": "instagram",
+      "icon": "instagram"
+    },
+    {
+      "url": "https://twitter.com/Inroweb",
+      "title": "twitter",
+      "icon": "twitter"
+    },
+    {
+      "title": "linkedin",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/company/inroweb/"
+    },
+    {
+      "icon": "pinterest",
+      "title": "pint",
+      "url": "https://www.linkedin.com/company/inroweb/"
+    }
+  ]
+}

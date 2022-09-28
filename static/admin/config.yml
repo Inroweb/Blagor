@@ -1,0 +1,363 @@
+backend:
+  name: github
+  repo: your-username/your-repo-name
+  branch: main
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
+
+# Uncomment local_backend when you need to develop in your local
+local_backend: true # run 'npx netlify-cms-proxy-server' for local testing, install globally
+
+media_folder: "static/assets"
+public_folder: "../../../static/assets"
+
+editor:
+  preview: false
+
+collections:
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "Home"
+        name: "home"
+        file: "src/content/pages/index.md"
+        fields:
+          - label: "Template"
+            name: "template"
+            widget: "hidden"
+            default: "index-page"
+          - label: "Slug"
+            name: "slug"
+            widget: "hidden"
+            default: "/"
+          - label: "Featured Image"
+            name: "featuredImage"
+            widget: "image"
+            tagname: ""
+            required: true
+          - label: "Name"
+            name: "name"
+            widget: "string"
+          - label: "Description"
+            name: "description"
+            widget: "text"
+            hint: "This will be used for SEO"
+          - label: "CTA button"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            hint: "Call to action button"
+            fields:
+              - name: "text"
+                label: "Text"
+                widget: "string"
+              - name: "url"
+                label: "URL"
+                widget: "string"
+
+      - label: "Posts"
+        name: "posts"
+        file: "src/util/posts.json"
+        fields:
+          - label: "Page Title"
+            name: "title"
+            widget: "string"
+          - label: "Description"
+            name: "description"
+            widget: "text"
+            hint: "This will be used for SEO"
+
+      - label: "Contact"
+        name: "contact"
+        file: "src/content/pages/contact.md"
+        fields:
+          - label: "Template"
+            name: "template"
+            widget: "hidden"
+            default: "contact-page"
+          - label: "Slug"
+            name: "slug"
+            widget: "hidden"
+            default: "/contact"
+          - label: "Page Title"
+            name: "title"
+            widget: "string"
+          - label: "Description"
+            name: "description"
+            widget: "text"
+            hint: "This will be used for SEO"
+
+  # Posts ****** ------ ******
+
+  - label: "Posts" # Used in the UI
+    name: "posts" # Used in routes, ie.: /admin/collections/:slug/edit
+    label_singular: "Post" # Used in the UI, ie: 'New Post'
+    description: "Create awesome content here."
+    folder: "src/content/posts"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{day}}/{{month}}/{{year}}"
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - label: "Template"
+        name: "template"
+        widget: "hidden"
+        default: "blog-post"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        tagname: "h1"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        dateFormat: "YYYY-MM-DD"
+        timeFormat: "HH:mm"
+        format: "YYYY-MM-DD HH:mm"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        hint: "This will be used for SEO"
+      - label: "Featured Image"
+        name: "featuredImage"
+        widget: "image"
+        tagname: ""
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Main content goes here."
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Manage tags globally from Admin > Collections > Tags"
+        field:
+          {
+            label: "tag",
+            name: "tag",
+            widget: "relation",
+            collection: "tags",
+            search_fields: ["title"],
+            value_field: "title",
+            display_fields: ["title"],
+            default: "none",
+          }
+
+  # Tags ****** ------ ******
+
+  - label: "Tags"
+    name: "tags"
+    label_singular: "Tag"
+    description: >
+      Create new tag here.
+    folder: "src/content/tags"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{year}}/{{month}}/{{day}}"
+    create: true
+    fields:
+      - label: "Template"
+        name: "template"
+        widget: "hidden"
+        default: "tags-page"
+      - label: "Tag Title"
+        name: "title"
+        widget: "string"
+        default: ""
+
+  # Menu ****** ------ ******
+
+  - label: "Menu"
+    name: "menu"
+    identifier_field: "name"
+    files:
+      - name: "headerMenu"
+        label: "Header Menu"
+        file: "src/util/headerMenu.json"
+        fields:
+          - label: "Menu"
+            name: "menu"
+            widget: "list"
+            collapsed: true
+            hint: 'Here you can add menu, Click on "Add menu"'
+            fields:
+              - name: "title"
+                label: "Title"
+                widget: "string"
+                required: true
+              - name: "url"
+                label: "url"
+                widget: "string"
+                required: true
+
+  # Appearance ****** ------ ******
+
+  - label: "Appearance"
+    name: "appearance"
+    identifier_field: "name"
+    files:
+      - label: "Default Theme"
+        name: "themescolors"
+        file: "src/util/default-colors.json"
+        fields:
+          - label: "Background"
+            name: "background"
+            widget: "color"
+            allowInput: true
+          - label: "Title Color"
+            name: "black"
+            widget: "color"
+            enableAlpha: true
+            allowInput: true
+          - label: "Muted color"
+            name: "mutedColor"
+            widget: "color"
+            enableAlpha: true
+            allowInput: true
+          - label: "Primary Color"
+            name: "primaryColor"
+            widget: "color"
+            enableAlpha: true
+            allowInput: true
+          - label: "Primary BG"
+            name: "primaryBg"
+            widget: "color"
+            enableAlpha: true
+            allowInput: true
+          - label: "Border Color"
+            name: "borderColor"
+            widget: "color"
+            enableAlpha: true
+            allowInput: true
+
+  # Settings ****** ------ ******
+
+  - label: "Settings"
+    name: "settings"
+    identifier_field: "name"
+    files:
+      - label: "General"
+        name: "general"
+        file: "src/util/site.json"
+        fields:
+          - label: "meta"
+            name: "meta"
+            widget: "object"
+            fields:
+              - widget: "string"
+                name: "title"
+                label: "Site Title"
+                required: true
+              - widget: "string"
+                name: "titleTemplate"
+                label: "Title Template"
+                default: "%s"
+                required: true
+              - widget: "string"
+                name: "siteUrl"
+                label: "Website URL"
+                required: true
+              - widget: "text"
+                name: "description"
+                label: "Description"
+                required: false
+              - label: "Show Logo"
+                name: "showLogo"
+                widget: "boolean"
+                default: false
+              - label: "Show Site Title"
+                name: "showTitle"
+                widget: "boolean"
+                default: false
+              - name: "logoImage"
+                label: "Logo Image"
+                widget: "image"
+                required: false
+              - widget: "image"
+                name: "image"
+                label: "image"
+              - widget: "image"
+                name: "iconimage"
+                label: "favicon"
+              - widget: "string"
+                name: "twitterUsername"
+                label: "Twitter"
+                required: false
+
+      - label: "Integration"
+        name: "integrations"
+        file: "src/util/integrations.json"
+        fields:
+          - label: "Google Analytics Tracking ID"
+            name: "ga"
+            widget: "string"
+            hint: "Add your tracking ID, for example UA-XXXXXXXXX-X"
+
+          - label: "Site Font"
+            name: "siteFont"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Heading"
+                name: "heading"
+                widget: "string"
+              - label: "Body"
+                name: "body"
+                widget: "string"
+              - label: "Monospace"
+                name: "monospace"
+                widget: "string"
+
+      - label: "Social Icons"
+        name: "socialIcons"
+        file: "src/util/socialmedia.json"
+        fields:
+          - label: "Social Icons"
+            name: "socialIcons"
+            widget: "list"
+            collapsed: true
+            hint: 'Here you can add social icons, Click on "Add social icons"'
+            fields:
+              - name: "title"
+                label: "Social Media Name"
+                widget: "string"
+                required: true
+              - name: "url"
+                label: "URL"
+                widget: "string"
+                required: true
+                hint: 'Paste the "URL" of your Social media'
+              - label: "Icon"
+                name: "icon"
+                widget: "select"
+                options:
+                  [
+                    "facebook",
+                    "twitter",
+                    "linkedin",
+                    "youtube",
+                    "instagram",
+                    "rss",
+                    "github",
+                    "telegram",
+                    "pinterest",
+                    "snapchat",
+                    "skype",
+                    "wordpress",
+                    "dribbble",
+                    "medium",
+                    "behance",
+                    "vk",
+                  ]
+                hint: "Select the Icon"
+
+      - label: "Footer"
+        name: "footer"
+        file: "src/util/footer.json"
+        fields:
+          - label: "Footer Text"
+            name: "footerText"
+            widget: "markdown"
+            required: false
+            hint: "Copyright text goes here, Do not any images and high level text."

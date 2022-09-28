@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "iconimage": "../../../static/assets/logo-iron.png",
+    "siteUrl": "https://inroweb.com",
+    "showLogo": true,
+    "twitterUsername": "@inroweb",
+    "darkModeVisibility": "NO",
+    "logoImage": "../../../static/assets/logo-iron.png",
+    "titleTemplate": "%s",
+    "title": "Blagor",
+    "image": "../../../static/assets/logo-iron.png",
+    "showTitle": true,
+    "description": "..."
+  }
+}
