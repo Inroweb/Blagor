@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/74341967-70e6-4db5-a486-61e3dfc627be/deploy-status)](https://app.netlify.com/sites/blagor-inroweb/deploys)
 
 
-A open-source template for jamstack community to build a personal and professional blog, built with GatbyJS and Netlify CMS [LIVE DEMO](https://blagor-inroweb.netlify.app/).
+An open-source template for jamstack community to build a personal and professional blog, built with GatbyJS and Netlify CMS [LIVE DEMO](https://blagor-inroweb.netlify.app/).
 
 
 [![Gatsby Starter Foundation Screenshot](static/assets/blagor.png)](https://www.inroweb.com/template/blagor)
