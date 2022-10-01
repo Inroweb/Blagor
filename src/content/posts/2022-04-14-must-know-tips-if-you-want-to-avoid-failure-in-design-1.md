@@ -4,7 +4,7 @@ title: Must Know Tips If You Want To Avoid Failure In Design.
 date: 2022-04-14 16:52
 description: Design is the specific concept that has been created in the mind of
   the designer that has been converted into a visual communication.
-featuredImage: ../../../static/assets/pexels-trần-long-13378649.jpg
+featuredImage: ../../../static/assets/pexels-huy-phan-1383782.jpg
 tags:
   - Abstract
   - Art
